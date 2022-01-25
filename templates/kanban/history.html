@@ -1,0 +1,25 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'kanban/history.css' %}">
+<body>
+
+  <h1>{{ task.title }}</h1>
+
+  <form action="{% url 'kanban:new_note' task.pk %}" method="post">
+    {% csrf_token %}
+    <p>
+      <textarea name="note" rows="6" cols="70"></textarea>
+      <button type="submit">New Note</button>
+    </p>
+  </form>
+  {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+  {% if task.tasknote_set.all %} <h3>Notes</h3> {% endif %}
+  {% for note in task.tasknote_set.all %}
+  <li>{{  note.note }} <p>{{ note.time}}</p></li>
+  {% endfor %}
+  <h3>History</h3>
+  {% for update in task.taskupdate_set.all %}
+    <li>{{ update }} Completed on: {{update.time}}</li>
+  {% endfor %}
+  <p><a href="{% url 'kanban:index' %}">Back to the Board</a></p>
+</body>

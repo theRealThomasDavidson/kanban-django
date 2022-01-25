@@ -1,0 +1,90 @@
+h1 a{
+  color: rgba(0,200,205,1);
+}
+div{
+  border-collapse: separate;
+  border-spacing: 10px;
+}
+div.board{
+ background: white no-repeat;
+  display:flex;
+}
+div.WIP{
+  background-color: #E5E5CC;
+}
+div.code_WIP {
+  display:flex;
+}
+div.backlog {
+  background-color: #B19CD9;
+}
+div.backlog_card{
+  border-style: dotted;
+  padding-top: 2px;
+  padding-right: 2px;
+  padding-bottom: 2px;
+  padding-left: 2px;
+}
+div.design {
+  background: pink no-repeat;
+}
+div.design_card{
+  border-style: dotted;
+  padding-top: 2px;
+  padding-right: 2px;
+  padding-bottom: 2px;
+  padding-left: 2px;
+}
+div.write {
+  background-color: #FFC357;
+}
+div.write_card{
+  border-style: dotted;
+  padding-top: 2px;
+  padding-right: 2px;
+  padding-bottom: 2px;
+  padding-left: 2px;
+}
+div.review {
+  background-color: #FDFD96;
+}
+div.review_card {
+  border-style: dotted;
+  padding-top: 2px;
+  padding-right: 2px;
+  padding-bottom: 2px;
+  padding-left: 2px;
+}
+div.testing {
+  background: lightgreen no-repeat;
+}
+div.testing_card{
+  border-style: dotted;
+  padding-top: 2px;
+  padding-right: 2px;
+  padding-bottom: 2px;
+  padding-left: 2px;
+}
+div.complete {
+  background: lightblue no-repeat;
+  border-spacing: 40px;
+}
+div.complete_card {
+  border-style: dotted;
+  padding-top: 2px;
+  padding-right: 2px;
+  padding-bottom: 2px;
+  padding-left: 2px;
+}
+div.TODOing {
+  display:flex;
+  background: pink no-repeat;
+  border-spacing: 40px;
+}
+div.TODO_card{
+  border-style: dotted;
+  padding-top: 2px;
+  padding-right: 2px;
+  padding-bottom: 2px;
+  padding-left: 2px;
+}

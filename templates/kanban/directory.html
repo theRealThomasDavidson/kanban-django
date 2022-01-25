@@ -1,0 +1,122 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'kanban/directory.css' %}">
+<body>
+<h1>Kanban Board</h1>
+ <form action="{% url 'kanban:new_card' %}" method="post">
+   {% csrf_token %}
+   <p>
+     <input type="text" name="task_title" size = "60">
+     <button type="submit">New Card</button>
+   </p>
+  </form>
+{% if task_list %}
+<div class="board">
+  <div class="backlog">
+    <h3>Backlog</h3>
+    <ul>
+      {% for task in task_list %}
+        {% if task.status == 1 %}
+          <div class="backlog_card">
+            <h4><a href="{% url 'kanban:history' task.pk %}">{{ task.title }}</h4>
+            <p><a href="{% url 'kanban:update' task.pk 2 %}">To Code design</a></p>
+            <p><a href="{% url 'kanban:update' task.pk 8 %}">To Tasking</a></p>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="WIP">
+    <h2>Code WIP</h2>
+    <div class="code_WIP">
+      <div class="design">
+        <h3>Design</h3>
+        <ul>
+          {% for task in task_list %}
+            {% if task.status == 2 %}
+              <div class="design_card">
+                <h4><a href="{% url 'kanban:history' task.pk %}">{{ task.title }}</h4>
+                <p><a href="{% url 'kanban:update' task.pk 1 %}">Re-Requested</a></p>
+                <p><a href="{% url 'kanban:update' task.pk 3 %}">Write</a></p>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="write">
+        <h3>Writing</h3>
+        <ul>
+          {% for task in task_list %}
+            {% if task.status == 3 %}
+              <div class="write_card">
+                <h4><a href="{% url 'kanban:history' task.pk %}">{{ task.title }}</h4>
+                <p><a href="{% url 'kanban:update' task.pk 2 %}">Re-Design</a></p>
+                <p><a href="{% url 'kanban:update' task.pk 4 %}">Review</a></p>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="review">
+        <h3>In Review</h3>
+        <ul>
+          {% for task in task_list %}
+            {% if task.status == 4 %}
+              <div class="review_card">
+                <h4><a href="{% url 'kanban:history' task.pk %}">{{ task.title }}</h4>
+                <p><a href="{% url 'kanban:update' task.pk 3 %}">Re-Write</a></p>
+                <p><a href="{% url 'kanban:update' task.pk 5 %}">Testing</a></p>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="testing">
+        <h3>Testing</h3>
+        <ul>
+          {% for task in task_list %}
+            {% if task.status == 5 %}
+              <div class="testing_card">
+                <h4><a href="{% url 'kanban:history' task.pk %}">{{ task.title }}</h4>
+                <p><a href="{% url 'kanban:update' task.pk 3 %}">Re-Write</a></p>
+                <p><a href="{% url 'kanban:update' task.pk 6 %}">Complete</a></p>
+              </div>
+          {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+    <h2>Tasking</h2>
+    <div class="TODOing">
+      <h3>In Progress</h3>
+        {% for task in task_list %}
+          {% if task.status == 8 %}
+            <div class="TODO_card">
+              <h4><a href="{% url 'kanban:history' task.pk %}">{{ task.title }}</h4>
+              <p><a href="{% url 'kanban:update' task.pk 1 %}">Back to Backlog</a></p>
+              <p><a href="{% url 'kanban:update' task.pk 6 %}">Complete</a></p>
+            </div>
+        {% endif %}
+        {% endfor %}
+    </div>
+  </div>
+  <div class="complete">
+    <h3>Completed</h3>
+    <ul>
+      {% for task in task_list %}
+        {% if task.status == 6 %}
+          <div class="complete_card">
+            <h4><a href="{% url 'kanban:history' task.pk %}">{{ task.title }}</h4>
+            <p><a href="{% url 'kanban:update' task.pk 1 %}">Request</a></p>
+            <p><a href="{% url 'kanban:update' task.pk 3 %}">Re-Write</a></p>
+            <p><a href="{% url 'kanban:update' task.pk 7 %}">hide Item</a></p>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+
+{% else %}
+  <p>No Tasks are available.</p>
+{% endif %}
+</body>
